@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import FatalError from "./e404";
+import LoggerComp from "./auth/LoggerComp";
+import RegistComp from "./auth/RegistComp";
+import ChatComp from "./chat/ChatComp";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const match = window.location.href.split("/");
+  // const isLoading = useSelector((state) => state.isLoading);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      {/* Показать анимацию, если isLoading === true */}
+      {/* {isLoading && <LoadingSpinner />}  */}
 
-export default App
+      <Routes>
+        <Route path="/" element={<LoggerComp />} />
+        <Route path="/login" element={<LoggerComp />} />
+        <Route path="/registration" element={<RegistComp />} />
+
+        <Route path="/main" element={<ChatComp />} />
+
+        <Route path="*" element={<FatalError />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;

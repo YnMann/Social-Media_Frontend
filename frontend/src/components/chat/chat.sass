@@ -1,0 +1,78 @@
+.chat-app
+  display: flex
+  height: 100vh
+
+  .sidebar
+    width: 300px
+    background: #2c3e50
+    color: white
+
+    .search-box
+      padding: 20px
+      input
+        width: 100%
+        padding: 10px
+        border: none
+        background: #34495e
+        color: white
+
+    .contact-list
+      list-style: none
+      padding: 0
+      margin: 0
+
+      .contact
+        display: flex
+        align-items: center
+        padding: 10px 20px
+        cursor: pointer
+        &:hover
+          background: #34495e
+
+        .avatar
+          margin-right: 10px
+          // Insert avatar styles here
+
+        .contact-info
+          .name
+            margin: 0
+            font-weight: bold
+
+          .last-message
+            margin: 0
+            font-size: 0.8em
+
+  .chat-window
+    flex-grow: 1
+    background: #ecf0f1
+
+    .chat-header
+      // Insert chat header styles here
+
+    .chat-history
+      padding: 20px
+      overflow-y: auto
+
+      .message
+        margin-bottom: 20px
+
+        .text
+          background: white
+          padding: 10px
+          border-radius: 5px
+          display: inline-block
+
+        .time
+          display: block
+          text-align: right
+          color: #bdc3c7
+          font-size: 0.8em
+
+    .chat-input
+      padding: 20px
+      background: #bdc3c7
+
+      input
+        width: 100%
+        padding: 10px
+        border: none
