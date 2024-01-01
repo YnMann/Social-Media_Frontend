@@ -3,10 +3,10 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import FatalError from "./components/e404";
-import LoggerComp from "./components/auth/LoggerComp";
-import RegistComp from "./components/auth/RegistComp";
-import ChatComp from "./components/chat/ChatComp";
+import FatalError from "./components/404/e404";
+import LoggerComp from "./components/auth/SignIn";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
 
 const App = () => {
   const token = localStorage.getItem("token");
@@ -14,11 +14,11 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoggerComp />} />
-        <Route path="/auth/sign-in" element={<LoggerComp />} />
-        <Route path="/auth/sign-up" element={<RegistComp />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/auth/sign-in" element={<SignIn />} />
+        <Route path="/auth/sign-up" element={<SignUp />} />
 
-        <Route path="/main" element={!token ? <LoggerComp /> : <ChatComp />} />
+        <Route path="/main" element={!token ? <SignIn /> : <LoggerComp />} />
 
         <Route path="*" element={<FatalError />} />
       </Routes>

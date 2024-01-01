@@ -17,6 +17,7 @@ export const authSlice = createSlice({
     },
     defaultState: (state) => {
       state = initialState;
+      return state
     },
   },
 });
