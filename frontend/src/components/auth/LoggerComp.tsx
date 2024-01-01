@@ -1,55 +1,78 @@
-import './auth.sass';
+import { useState } from "react";
+import { useSigninUserMutation } from "../../services/AuthService";
+import "./auth.sass";
+import { useAppDispatch } from "../../hooks/redux";
 
 const LoggerComp = () => {
+  const dispatch = useAppDispatch();
+  const [email, setEmail] = useState<string>();
+  // const toast = useToast();
+  // const navigate = useNavigate();
+  const [signinUser, { data, isLoading, error, isError, isSuccess }] =
+    useSigninUserMutation();
+  console.log(data);
+  // if (isError) {
+  //   toast({
+  //     title: (error as any).data.message,
+  //     status: "error",
+  //     duration: 5000,
+  //   });
+  //   if ((error as any).data.message === "User not Verified") {
+  //     navigate("/send-verify-mail", {
+  //       state: { email },
+  //     });
+  //   }
+  // }
+  if (isSuccess) {
+    // dispatch(setUser({ token: data.token, name: data.name }));
+    // navigate("/");
+    localStorage.setItem("token", data.token);
+  }
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    // Отправляем запрос на сервер для входа
+    const requestBody = { username: email, password };
+    signinUser(requestBody);
+
+    // После успешной аутентификации, вы можете обработать ответ, например, перенаправить пользователя
+    // или выполнить другие действия.
+  };
+
+  console.log(data);
+  console.log(error);
+
   return (
-    <section className="cont">
-      <div className="welcome">
-        <div className="box">
-          <div className="signup nodisplay">
-            <h1>register</h1>
-            <form autoComplete="off">
-              <input type="text" placeholder="username" />
-              <input type="email" placeholder="email" />
-              <input type="password" placeholder="password" />
-              <input type="password" placeholder="confirm password" />
-              <button className="button submit">create account</button>
-            </form>
-          </div>
-          <div className="signin">
-            <h1>sign in</h1>
-            <form className="more-padding" autoComplete="off">
-              <input type="text" placeholder="username" />
-              <input type="password" placeholder="password" />
-              <div className="checkbox">
-                <input type="checkbox" id="remember" />
-                <label htmlFor="remember">remember me</label>
-              </div>
-              <button className="button submit">login</button>
-            </form>
-          </div>
+    <div>
+      <h1>Signin</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            placeholder="Enter Email..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-        <div className="leftbox">
-          <h2 className="title">
-            <span>BLOOM</span>&<br />
-            BOUQUET
-          </h2>
-          <p className="desc">pick your perfect <span>bouquet</span></p>
-          <img className="flower smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="1357d638624297b" />
-          <p className="account">have an account?</p>
-          <button className="button" id="signin">login</button>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            placeholder="Enter Password..."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <div className="rightbox">
-          <h2 className="title">
-            <span>BLOOM</span>&<br />
-            BOUQUET
-          </h2>
-          <p className="desc">pick your perfect <span>bouquet</span></p>
-          <img className="flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg" alt="0057c1c1bab51a0" />
-          <p className="account">don't have an account?</p>
-          <button className="button" id="signup">sign up</button>
+        <div>
+          <Link to="/forgot-password">Forgot Password</Link>
         </div>
-      </div>
-    </section>
+        <button type="submit" disabled={isLoading}>
+          Signin
+        </button>
+      </form>
+    </div>
   );
 };
 
