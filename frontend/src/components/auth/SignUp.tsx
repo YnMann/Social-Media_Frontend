@@ -12,13 +12,13 @@ const SignUp = () => {
   const [signupUser, { isLoading }] = useSigninUserMutation();
   const navigate = useNavigate();
 
-  const handleSignIn = async (e: any) => {
+  const handleSignUp = async (e: any) => {
     e.preventDefault();
 
     try {
       const response = await signupUser({ username: name, password }).unwrap();
       dispatch(setUser({ token: response.token, name: response.name }));
-      localStorage.setItem("token", response.token);
+      console.log("SIGN-UP status: 200")
       navigate("/auth/sign-in");
     } catch (error) {
       console.error("Failed to login: ", error);
@@ -29,10 +29,10 @@ const SignUp = () => {
     <div className="wrapper">
       <div className="header">
         <h3 className="sign-in">Sign Up</h3>
-        <div className="button">Sign In</div>
+        <Link to={"/auth/sign-in"} className="button">Sign In</Link>
       </div>
       <div className="clear"></div>
-      <form action="#" onSubmit={handleSignIn}>
+      <form action="#" onSubmit={handleSignUp}>
         <div>
           <label className="user" htmlFor="name">
             <i className="fa-solid fa-user"></i>

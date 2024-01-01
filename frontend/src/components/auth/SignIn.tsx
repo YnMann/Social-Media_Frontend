@@ -30,7 +30,7 @@ const SignIn = () => {
     <div className="wrapper">
       <div className="header">
         <h3 className="sign-in">Sign in</h3>
-        <div className="button">Register</div>
+        <Link to={"/auth/sign-up"} className="button">Register</Link>
       </div>
       <div className="clear"></div>
       <form action="#" onSubmit={handleSignIn}>
