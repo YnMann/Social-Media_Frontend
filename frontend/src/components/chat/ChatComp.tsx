@@ -1,6 +1,21 @@
 import "./chat.sass";
 
 const ChatComp = () => {
+  var ws = new WebSocket("ws://localhost:8000/u/ws");
+  //Triggered when the connection is opened
+  ws.onopen = (_) => {
+    console.log("Connection open...");
+    ws.send("Hello WebSockets!");
+  };
+  //Triggered when a message is received
+  ws.onmessage = (ev) => {
+    console.log("Received Message: " + ev.data);
+  };
+  //Triggered when the connection is closed
+  ws.onclose = (_) => {
+    console.log("Connection closed.");
+  };
+
   return (
     <div className="chat-app">
       <aside className="sidebar">
