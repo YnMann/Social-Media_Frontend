@@ -6,7 +6,7 @@ import {
 import FatalError from "./components/404/e404";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
-import ChatComp from "./components/chat/ChatComp";
+import MainComp from "./components/chat/MainComp";
 
 const App = () => {
   const token = localStorage.getItem("token");
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/auth/sign-up" element={<SignUp />} />
 
-        <Route path="/main" element={!token ? <SignIn /> : <ChatComp />} />
+        <Route path="/:user_id" element={!token ? <SignIn /> : <MainComp />} />
 
         <Route path="*" element={<FatalError />} />
       </Routes>
