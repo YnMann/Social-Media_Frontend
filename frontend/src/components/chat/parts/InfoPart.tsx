@@ -1,4 +1,4 @@
-import "./styles.scss";
+import "../styles.scss";
 
 const InfoPart = () => {
     return (
