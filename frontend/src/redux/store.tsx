@@ -3,11 +3,15 @@ import { authApi } from "../services/AuthService";
 import { authSlice } from "./reducers/AuthSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { socketsSlice } from "./reducers/SocketsSlice";
+import { userSlice } from "./reducers/UserSlice";
+import { userApi } from "../services/UserService";
 
 const rootReducer = combineReducers({
   auth: authSlice,
   [authApi.reducerPath]: authApi.reducer,
-  sockets: socketsSlice
+  sockets: socketsSlice,
+  user: userSlice,
+  [userApi.reducerPath]: userApi.reducer,
 });
 
 export const setupStore = configureStore({

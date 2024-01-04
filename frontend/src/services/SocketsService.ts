@@ -1,7 +1,7 @@
 const log = console.log;
 
 export default class SocketsService {
-  ws = new WebSocket("ws://localhost:8000/u/ws");
+  ws = new WebSocket("ws://localhost:8000/ws");
 
   connectWS = () => {
     //Triggered when the connection is opened
