@@ -11,6 +11,7 @@ const ContactsPart = () => {
     const fetchContacts = async () => {
       try {
         const response = await getContacts({});
+
         if ("data" in response) setContacts(response.data.contacts);
       } catch (e) {
         console.error("Error fetching contacts:", e);
@@ -29,6 +30,7 @@ const ContactsPart = () => {
       clearInterval(intervalId);
     };
   }, [getContacts]);
+  console.log("CONTACTS", contacts)
 
   return (
     <div className="conversation-area">

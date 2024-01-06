@@ -3,4 +3,6 @@ export interface ContactsState {
   FirstName: string;
   LastName: string;
   PhotoURL: string;
+  IsOnline: boolean;
+  IsBanned: boolean;
 }

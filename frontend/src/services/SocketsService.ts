@@ -3,12 +3,16 @@ const log = console.log;
 export default class SocketsService {
   ws = new WebSocket("ws://localhost:8000/ws");
 
-  connectWS = () => {
+  connectWS = (response: any) => {
     //Triggered when the connection is opened
     this.ws.onopen = (_) => {
       log("%cWS connection open", "color: yellow");
+      const msg = {
+        sender_id: response.data.ID as string,
+        content: "CONNECT",
+      };
       // get contacts from server
-      this.ws.send("GET_CONTACTS");
+      this.ws.send(JSON.stringify(msg));
     };
     //Triggered when a message is received
     this.ws.onmessage = (ev) => {
