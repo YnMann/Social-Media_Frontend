@@ -15,7 +15,13 @@ export const authApi = createApi({
       },
     }),
     signupUser: builder.mutation({
-      query: (body: { username: string; password: string }) => {
+      query: (body: {
+        email: string;
+        username: string;
+        password: string;
+        first_name: string;
+        last_name: string;
+      }) => {
         return {
           url: "/sign-up",
           method: "post",
@@ -69,8 +75,8 @@ export const authApi = createApi({
 export const {
   useSigninUserMutation,
   useSignupUserMutation,
-//   useSendMailForVerificationMutation,
-//   useVerifyUserMutation,
-//   useSendMailForgotPasswordMutation,
-//   useResetPasswordMutation,
+  //   useSendMailForVerificationMutation,
+  //   useVerifyUserMutation,
+  //   useSendMailForgotPasswordMutation,
+  //   useResetPasswordMutation,
 } = authApi;

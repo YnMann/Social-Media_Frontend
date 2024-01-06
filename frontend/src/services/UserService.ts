@@ -3,7 +3,16 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Define a service using a base URL and expected endpoints
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:8000/api/user",
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     getContacts: builder.mutation({
       query: (_) => {
@@ -13,9 +22,15 @@ export const userApi = createApi({
         };
       },
     }),
+    getProfile: builder.mutation({
+      query: (_) => {
+        return {
+          url: "/get-profile",
+          method: "get",
+        };
+      },
+    }),
   }),
 });
 
-export const {
-    useGetContactsMutation
-} = userApi;
+export const { useGetContactsMutation, useGetProfileMutation } = userApi;

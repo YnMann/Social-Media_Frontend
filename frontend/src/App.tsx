@@ -17,7 +17,7 @@ const App = () => {
 
         <Route
           path="/:user_id"
-          element={!token ? <SignIn /> : <MainComp />}
+          element={!token ? <MainComp /> : <MainComp />}
         />
 
         <Route path="*" element={<FatalError />} />

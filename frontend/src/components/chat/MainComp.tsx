@@ -5,14 +5,22 @@ import ContactsPart from "./parts/ContactsPart";
 import HeaderPart from "./parts/HeaderPart";
 // import InfoPart from "./parts/InfoPart";
 import "./styles.scss";
+import { useGetProfileMutation } from "../../services/UserService";
 
 const MainComp = () => {
   const [connected, setConnected] = useState(false);
+  const [getUserProfile] = useGetProfileMutation();
+  const fetchUserProfile = async () => {
+    const response = await getUserProfile({});
+    console.log("RES-PROFILE", response)
+  }
 
   if (!connected) {
     const ws = new SocketsService();
     ws.connectWS();
-    setConnected(true);
+    setConnected(true);  
+
+    fetchUserProfile()
   }
 
   return (
