@@ -1,4 +1,4 @@
-// import ChatPart from "./parts/ChatPart";
+import ChatPart from "./parts/ChatPart";
 import { useState } from "react";
 import SocketsService from "../../services/SocketsService";
 import ContactsPart from "./parts/ContactsPart";
@@ -12,23 +12,25 @@ const MainComp = () => {
   const [getUserProfile] = useGetProfileMutation();
   const fetchUserProfile = async () => {
     const response = await getUserProfile({});
-    console.log("RES-PROFILE", response)
-  }
+    console.log("RES-PROFILE", response);
+  };
 
   if (!connected) {
     const ws = new SocketsService();
     ws.connectWS();
-    setConnected(true);  
+    setConnected(true);
 
-    fetchUserProfile()
+    fetchUserProfile();
   }
 
   return (
-    <section>
+    <section className="app">
       <HeaderPart></HeaderPart>
-      <ContactsPart></ContactsPart>
-      {/* <ChatPart></ChatPart> */}
-      {/* <InfoPart></InfoPart> */}
+      <div className="wrapper">
+        <ContactsPart></ContactsPart>
+        <ChatPart></ChatPart>
+        {/* <InfoPart></InfoPart> */}
+      </div>
     </section>
   );
 };

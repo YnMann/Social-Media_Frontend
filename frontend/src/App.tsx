@@ -15,7 +15,7 @@ const App = () => {
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/auth/sign-up" element={<SignUp />} />
 
-        <Route
+        <Route  
           path="/:user_id"
           element={!token ? <MainComp /> : <MainComp />}
         />

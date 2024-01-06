@@ -6,7 +6,7 @@ import { socketsSlice } from "./reducers/SocketsSlice";
 import { userSlice } from "./reducers/UserSlice";
 import { userApi } from "../services/UserService";
 
-const rootReducer = combineReducers({
+const rootReducer: any = combineReducers({
   auth: authSlice,
   [authApi.reducerPath]: authApi.reducer,
   sockets: socketsSlice,

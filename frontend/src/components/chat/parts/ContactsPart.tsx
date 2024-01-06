@@ -31,41 +31,35 @@ const ContactsPart = () => {
   }, [getContacts]);
 
   return (
-    <div className="wrapper">
-      <div className="conversation-area">
-        {contacts &&
-          contacts.map((c: any) => {
-            return (
-              <div className="msg online">
-                {c.PhotoURL !== "" && (
-                  <img
-                    className="msg-profile"
-                    src={c.PhotoURL}
-                    alt="user_photo"
-                  />
-                )}
-                {c.PhotoURL === "" && (
-                  <img
-                    className="msg-profile"
-                    src={NoPhoto}
-                    alt="user_photo"
-                  />
-                )}
-                <div className="msg-detail">
-                  <div className="msg-username">
-                    {c.FirstName} {c.LastName}
-                  </div>
-                  <div className="msg-content">
-                    <span className="msg-message">What time was our meet</span>
-                    <span className="msg-date">20m</span>
-                  </div>
+    <div className="conversation-area">
+      {contacts &&
+        contacts.map((c: any) => {
+          return (
+            <div className="msg online">
+              {c.PhotoURL !== "" && (
+                <img
+                  className="msg-profile"
+                  src={c.PhotoURL}
+                  alt="user_photo"
+                />
+              )}
+              {c.PhotoURL === "" && (
+                <img className="msg-profile" src={NoPhoto} alt="user_photo" />
+              )}
+              <div className="msg-detail">
+                <div className="msg-username">
+                  {c.FirstName} {c.LastName}
+                </div>
+                <div className="msg-content">
+                  <span className="msg-message">What time was our meet</span>
+                  <span className="msg-date">20m</span>
                 </div>
               </div>
-            );
-          })}
-        <button className="add"></button>
-        <div className="overlay"></div>
-      </div>
+            </div>
+          );
+        })}
+      <button className="add"></button>
+      <div className="overlay"></div>
     </div>
   );
 };

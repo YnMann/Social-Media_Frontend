@@ -117,12 +117,12 @@ img {
  max-width: 100%;
 }
 
-body {
+.body {
  font-family: var(--body-font);
  color: var(--body-color);
 }
 
-html {
+.body {
  box-sizing: border-box;
  -webkit-font-smoothing: antialiased;
 }
@@ -170,6 +170,8 @@ html {
 
 .chat-area {
  flex-grow: 1;
+ display: flex;
+ justify-content: flex-end;
 }
 
 .search-bar {
